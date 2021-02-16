@@ -1,0 +1,25 @@
+{
+  "name": "LitePM-Backend",
+  "version": "1.0.0",
+  "description": "Simple project management application for small team use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaskanwar/LitePM-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaskanwar/LitePM-Backend/issues"
+  },
+  "homepage": "https://github.com/Jaskanwar/LitePM-Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "hpp": "^0.2.3"
+  }
+}
