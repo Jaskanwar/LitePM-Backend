@@ -36,7 +36,7 @@ router.post("/assign", async (req, res) => {
     let project = await Projects.findOne({ projectId });
     for (let i = 0; i < project.Task.length; i++) {
       await project.update(
-        { "project.Task.taskId" : taskId },
+        { "project.Task.taskId": taskId },
         { $set: { startTime: startTime, userId: userId, status: "inProgress" } }
       );
       await project.save();
@@ -58,17 +58,19 @@ router.post("/edit", async (req, res) => {
       description,
       status,
     } = req.body;
-    let project = await Projects.findOne({ projectId });
-    for (let i = 0; i < project.Task.length; i++) {
-      if (project.Task[i].taskId === taskId) {
-        project.Task[i].push({
-          title: title,
-          duration: duration,
-          description: description,
-          status: status,
-        });
+    
+    await Projects.updateOne(
+      { projectId: projectId, "Task.taskId": taskId },
+      {
+        $set: {
+          "Task.$.title": title,
+          "Task.$.duration": duration,
+          "Task.$.description": description,
+          "Task.$.status": status,
+        },
       }
-    }
+    );
+
     return res.status(200).send("Task was edited!");
   } catch (err) {
     console.error(err.message);
