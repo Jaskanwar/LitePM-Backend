@@ -3,7 +3,6 @@ const hpp = require("hpp");
 const cors = require("cors");
 const connectMongo = require("./config/config");
 const PORT = 3000;
-
 const Projects = require("./Models/Projects");
 
 //initalize express app
@@ -18,8 +17,10 @@ app.use(express.json());
 //stops http parameter pollution
 app.use(hpp());
 
+
 connectMongo();
 
+app.use(`/api/project`, require(`./API/project`));
 app.get("/", (req, res) => {
   let projectName = "Testing2"
   let title = "Jaskanwar";
