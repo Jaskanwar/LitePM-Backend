@@ -1,22 +1,31 @@
 const express = require("express");
-const hpp = require("hpp");
-const cors = require("cors");
-const connectMongo = require("./config/config");
-const PORT = 3000;
+const Projects = require("../Models/Projects");
+const router = express.Router();
 
-const User = require("./Models/user");
+router.get(`/:projectId?`, async (req,res)=>{
+    try{
+        let searchId = req.params.projectId;
+        const project = await Projects.findOne({projectId: searchId});
+        
+    }catch (err){
+        console.error(err.message);
+        res.status(500).send("server error");
+    }
 
-//initalize express app
-const app = express();
+});
 
-//enables cross orgin resource sharing
-app.use(cors());
 
-//initalize request middleware
-app.use(express.json());
 
-//stops http parameter pollution
-app.use(hpp());
 
-connectMongo();
 
+
+
+
+
+
+
+
+
+
+
+module.exports = router;

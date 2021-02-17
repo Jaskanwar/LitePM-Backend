@@ -21,6 +21,7 @@ app.use(hpp());
 connectMongo();
 
 app.use(`/api/project`, require(`./API/project`));
+app.use(`/api/document`, require(`./API/document`));
 app.get("/", (req, res) => {
   let projectName = "Testing2"
   let title = "Jaskanwar";
