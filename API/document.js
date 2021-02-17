@@ -37,7 +37,7 @@ router.get(`/delete/:projectId/:documentId?`, async (req,res)=>{
             }
         }
         await project.save();
-         
+        res.status(200).send("Removed Document"); 
     }catch (err){
         console.error(err.message);
         res.status(500).send("server error");
