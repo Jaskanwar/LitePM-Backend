@@ -21,11 +21,14 @@ app.use(hpp());
 connectMongo();
 
 app.get("/", (req, res) => {
-  let name = "Jaskanwar";
+  let projectName = "Testing2"
+  let title = "Jaskanwar";
   let email = "Test2@gmail.com"
   let project = new Projects({
-    name,
-    email
+    projectName,
+    Task:{
+      title
+    }
   });
   res.send("Hello World!");
   project.save();
