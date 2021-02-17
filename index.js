@@ -4,7 +4,7 @@ const cors = require("cors");
 const connectMongo = require("./config/config");
 const PORT = 3000;
 
-const User = require("./Models/user");
+const Projects = require("./Models/Projects");
 
 //initalize express app
 const app = express();
@@ -23,12 +23,12 @@ connectMongo();
 app.get("/", (req, res) => {
   let name = "Jaskanwar";
   let email = "Test2@gmail.com"
-  let user = new User({
+  let project = new Projects({
     name,
     email
   });
   res.send("Hello World!");
-  user.save();
+  project.save();
 });
 
 app.listen(PORT, () => {
