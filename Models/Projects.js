@@ -16,15 +16,16 @@ const projectSchema = new mongoose.Schema({
   },
   Task:[{
     taskId:{
-      type:String
+      type:String,
+      required: true
     },
     title:{
-      type:String,
-      required:true
+      type:String
     },
     status:{
       type:String,
-      enum: ['todo', 'inProgress','completed']
+      enum: ['todo', 'inProgress','completed'],
+      default: 'todo'
     },
     duration:{
       type:String
