@@ -23,6 +23,7 @@ connectMongo();
 app.use(`/api/project`, require(`./API/project`));
 app.use(`/api/document`, require(`./API/document`));
 app.use('/api/tasks', require('./API/tasks'));
+app.use('/api/members', require('./API/members'));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
