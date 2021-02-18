@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../Models/Projects");
-import { nanoid } from 'nanoid'
+const nanoid = require("nanoid");
 
 //create new task
 router.post("/create", async (req, res) => {
