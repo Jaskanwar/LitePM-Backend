@@ -21,6 +21,7 @@ app.use(hpp());
 connectMongo();
 
 app.use('/api/tasks', require('./API/tasks'));
+app.use('/api/members', require('./API/members'));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
