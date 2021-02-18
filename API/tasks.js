@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../Models/Projects");
+import { nanoid } from 'nanoid'
 
 //create new task
 router.post("/create", async (req, res) => {
@@ -8,7 +9,7 @@ router.post("/create", async (req, res) => {
     const { projectId, title, duration, description } = req.body;
 
     let project = await Projects.findOne({ projectId });
-    let taskid = 6;
+    let taskid = nanoid(8);
     console.log(project);
     if (!project) {
       return res.status(400).send("Project does not exist!");

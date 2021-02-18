@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../Models/Projects");
+import { nanoid } from 'nanoid'
 
 //create new member
 router.post("/create", async (req, res) => {
   try {
     const { projectId, name, email, phone, github } = req.body;
-    let userId = 1;
+    let userId = nanoid(8);
     let project = await Projects.findOne({ projectId });
+    console.log(JSON.stringify(project.Member._id));
     if (!project) {
       return res.status(400).send("Project does not exist!");
     }
@@ -21,7 +23,8 @@ router.post("/create", async (req, res) => {
     });
 
     await project.save();
-
+    project = await Projects.findOne({ projectId });
+    console.log(project.Member._id);
     return res.status(200).send("Member was added succesfully!");
   } catch (err) {
     console.error(err.message);
