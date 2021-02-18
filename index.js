@@ -22,18 +22,10 @@ connectMongo();
 
 app.use(`/api/project`, require(`./API/project`));
 app.use(`/api/document`, require(`./API/document`));
+app.use('/api/tasks', require('./API/tasks'));
+
 app.get("/", (req, res) => {
-  let projectName = "Testing2"
-  let title = "Jaskanwar";
-  let email = "Test2@gmail.com"
-  let project = new Projects({
-    projectName,
-    Task:{
-      title
-    }
-  });
   res.send("Hello World!");
-  project.save();
 });
 
 app.listen(PORT, () => {
