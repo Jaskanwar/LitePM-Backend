@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../Models/Projects");
-const nanoid = require("nanoid");
+const { v4: uuidv4 } = require('uuid');
 
 //create new member
 router.post("/create", async (req, res) => {
   try {
     const { projectId, name, email, phone, github } = req.body;
-    let userId = nanoid(8);
+    let userId = uuidv4();
     let project = await Projects.findOne({ projectId });
     console.log(JSON.stringify(project.Member._id));
     if (!project) {
