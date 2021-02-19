@@ -8,29 +8,26 @@ router.get(`/get/:projectId?`, async (req,res)=>{
     try{
         let searchId = req.params.projectId;
         const project = await Projects.findOne({projectId: searchId});
-        console.log()
-        res.send("success");
+        const jsonProject = project.toJSON()
+        res.send(jsonProject);
     }catch (err){
         console.error(err.message);
         res.status(500).send("server error");
     }
-
 });
     
 
 //Create a new Project with a unique ID (CHANGE FROM GET ONCE DONE TESTING)
-router.get(`/createProject`, (req,res)=>{
-    let projectId = uuidv4();
-    let projectName = "Test2"
-    let Duration = "3 weeks"
-    let Description = "Testing Poop"
+router.post(`/create`, async (req,res)=>{
+    let newProjectId = uuidv4();
+    const {newName, newDuration, newDescription } = req.body;
     let project = new Projects({
-        projectName,
-        Duration,
-        Description,
-        projectId
+        projectName: newName,
+        Duration: newDuration,
+        Description: newDescription,
+        projectId: newProjectId
     });
-    res.send("Added Project");
+    res.send(newProjectId);
     project.save();
 
 })

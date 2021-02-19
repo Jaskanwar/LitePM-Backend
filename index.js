@@ -2,7 +2,7 @@ const express = require("express");
 const hpp = require("hpp");
 const cors = require("cors");
 const connectMongo = require("./config/config");
-const PORT = 3000;
+const PORT = 5000;
 const Projects = require("./Models/Projects");
 
 //initalize express app
