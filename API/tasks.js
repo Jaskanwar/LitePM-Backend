@@ -10,7 +10,6 @@ router.post("/create", async (req, res) => {
 
     let project = await Projects.findOne({ projectId });
     let taskid = uuidv4();
-    console.log(project);
     if (!project) {
       return res.status(400).send("Project does not exist!");
     }
