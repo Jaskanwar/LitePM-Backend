@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../Models/Projects");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 
 //create new task
 router.post("/create", async (req, res) => {
@@ -23,7 +23,8 @@ router.post("/create", async (req, res) => {
 
     await project.save();
 
-    return res.status(200).send("Task was created succesfully!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("server error");
@@ -35,7 +36,7 @@ router.post("/assign", async (req, res) => {
   try {
     const { projectId, startTime, userId, taskId } = req.body;
     await Projects.updateOne(
-      { "Task.taskId": taskId },
+      { projectId: projectId, "Task.taskId": taskId },
       {
         $set: {
           "Task.$.startTime": startTime,
@@ -45,7 +46,8 @@ router.post("/assign", async (req, res) => {
       }
     );
 
-    return res.status(200).send("Task was assigned!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -76,7 +78,8 @@ router.post("/edit", async (req, res) => {
       }
     );
 
-    return res.status(200).send("Task was edited!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -86,9 +89,9 @@ router.post("/edit", async (req, res) => {
 //complete a task
 router.post("/complete", async (req, res) => {
   try {
-    const { taskId } = req.body;
+    const { projectId, taskId } = req.body;
     await Projects.updateOne(
-      { "Task.taskId": taskId },
+      { projectId: projectId, "Task.taskId": taskId },
       {
         $set: {
           "Task.$.status": "completed",
@@ -96,7 +99,8 @@ router.post("/complete", async (req, res) => {
       }
     );
 
-    return res.status(200).send("Task was completed!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -115,10 +119,12 @@ router.post("/delete", async (req, res) => {
     }
     await project.save();
 
-    return res.status(200).send("Task was deleted!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
 });
+
 module.exports = router;

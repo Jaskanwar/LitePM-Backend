@@ -1,3 +1,4 @@
+const { Double } = require("mongodb");
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema({
@@ -28,7 +29,7 @@ const projectSchema = new mongoose.Schema({
       default: 'todo'
     },
     duration:{
-      type:String
+      type:Double
     },
     description:{
       type:String
@@ -37,7 +38,7 @@ const projectSchema = new mongoose.Schema({
       type:String
     },
     startTime:{
-      type:String
+      type:Double
     }
   }],
   Member:[{

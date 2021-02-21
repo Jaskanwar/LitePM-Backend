@@ -23,8 +23,7 @@ router.post("/create", async (req, res) => {
     });
 
     await project.save();
-    project = await Projects.findOne({ projectId });
-    console.log(project.Member._id);
+
     return res.status(200).send("Member was added succesfully!");
   } catch (err) {
     console.error(err.message);
