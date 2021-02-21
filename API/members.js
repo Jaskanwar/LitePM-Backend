@@ -24,7 +24,8 @@ router.post("/create", async (req, res) => {
 
     await project.save();
 
-    return res.status(200).send("Member was added succesfully!");
+    const project = await Projects.findOne({ projectId: projectId });
+    return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
     res.status(500).send("server error");
