@@ -24,7 +24,7 @@ router.post("/create", async (req, res) => {
 
     await project.save();
 
-    const project = await Projects.findOne({ projectId: projectId });
+    project = await Projects.findOne({ projectId: projectId });
     return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
