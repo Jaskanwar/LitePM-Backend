@@ -29,7 +29,7 @@ const projectSchema = new mongoose.Schema({
       default: 'todo'
     },
     duration:{
-      type:String
+      type:Number
     },
     description:{
       type:String
@@ -38,7 +38,7 @@ const projectSchema = new mongoose.Schema({
       type:String
     },
     startTime:{
-      type:String
+      type:Number
     }
   }],
   Member:[{
