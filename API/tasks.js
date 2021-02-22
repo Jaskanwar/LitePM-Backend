@@ -22,7 +22,6 @@ router.post("/create", async (req, res) => {
     });
 
     await project.save();
-    console.log(taskid)
     project = await Projects.findOne({ projectId: projectId});
     
     for (let i = 0; i < project.Task.length; i++) {

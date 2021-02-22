@@ -9,7 +9,6 @@ router.post("/create", async (req, res) => {
     const { projectId, name, email, phone, github } = req.body;
     let userId = uuidv4();
     let project = await Projects.findOne({ projectId });
-    console.log(JSON.stringify(project.Member._id));
     if (!project) {
       return res.status(400).send("Project does not exist!");
     }
