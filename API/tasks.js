@@ -22,8 +22,15 @@ router.post("/create", async (req, res) => {
     });
 
     await project.save();
-
-    project = await Projects.findOne({ projectId: projectId });
+    console.log(taskid)
+    project = await Projects.findOne({ projectId: projectId});
+    
+    for (let i = 0; i < project.Task.length; i++) {
+      if (project.Task[i].taskId === taskid) {
+        let id = project.Task[i].taskId
+        return res.status(200).send(id);
+      }
+    }
     return res.status(200).send(project.toJSON());
   } catch (err) {
     console.error(err.message);
