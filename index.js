@@ -8,9 +8,9 @@ const Projects = require("./Models/Projects");
 const fs = require('fs');
 const https = require('https');
 
-const privateKey = fs.readFileSync('/certificates/private.key', 'utf8');
-const certificate = fs.readFileSync('/certificates/certificate.crt', 'utf8');
-const ca = fs.readFileSync('/certificates/ca_bundle.crt', 'utf8');
+const privateKey = fs.readFileSync('./certificates/private.key', 'utf8');
+const certificate = fs.readFileSync('./certificates/certificate.crt', 'utf8');
+const ca = fs.readFileSync('./certificates/ca_bundle.crt', 'utf8');
 //initalize express app
 const app = express();
 
